@@ -1,4 +1,5 @@
 #include "webserver.h"
+#include "request.h"
 
 WebServer::WebServer() : timeRemaining(0), busy(false) {}
 

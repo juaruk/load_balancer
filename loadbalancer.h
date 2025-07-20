@@ -3,7 +3,9 @@
 
 #include <vector>
 #include <queue>
+#include <ostream> 
 #include "webserver.h"
+#include "request.h"
 //webserver is the class that is the server
 
 /**
@@ -22,7 +24,7 @@ public:
     void addRequest(const Request& req);
     void distributeRequests();
     void tick();
-    void simulate(int totalTime);
+    void simulate(int totalTime, std::ostream& out);
 };
 
 #endif // LOADBALANCER_H

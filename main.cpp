@@ -1,5 +1,7 @@
 #include <iostream>
 #include "loadbalancer.h"
+#include "request.h"
+#include <fstream>
 
 int main() {
     int numServers, totalTime;
@@ -14,7 +16,11 @@ int main() {
         lb.addRequest(Request("1.2.3.4", "5.6.7.8", 1 + rand() % 10));
     }
 
-    lb.simulate(totalTime);
+    // Open log file
+    std::ofstream logFile("simulation_log.txt");
+    lb.simulate(totalTime, logFile);
+    logFile.close();
+    
     std::cout << "Simulation complete." << std::endl;
     return 0;
 }

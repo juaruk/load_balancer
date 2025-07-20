@@ -53,8 +53,9 @@ void LoadBalancer::tick() {
 }
 
 //this is how load balancer increments time
-void LoadBalancer::simulate(int totalTime) {
+void LoadBalancer::simulate(int totalTime, std::ostream& out) {
     for (int i = 0; i < totalTime; ++i) {
         tick();
+        out << "Tick: " << i + 1 << ", Requests in queue: " << requestQueue.size() << "\n";
     }
 }
