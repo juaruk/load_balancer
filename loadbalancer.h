@@ -1,0 +1,27 @@
+#ifndef LOADBALANCER_H
+#define LOADBALANCER_H
+
+#include <vector>
+#include <queue>
+#include "webserver.h"
+
+/**
+ * @class LoadBalancer
+ * @brief Distributes requests to available web servers.
+ */
+class LoadBalancer {
+private:
+    std::vector<WebServer*> servers;
+    std::queue<Request> requestQueue;
+    int currentTime;
+
+public:
+    LoadBalancer(int numServers);
+    ~LoadBalancer();
+    void addRequest(const Request& req);
+    void distributeRequests();
+    void tick();
+    void simulate(int totalTime);
+};
+
+#endif // LOADBALANCER_H
