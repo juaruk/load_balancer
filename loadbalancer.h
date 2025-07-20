@@ -4,6 +4,7 @@
 #include <vector>
 #include <queue>
 #include "webserver.h"
+//webserver is the class that is the server
 
 /**
  * @class LoadBalancer
