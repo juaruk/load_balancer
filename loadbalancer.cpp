@@ -34,7 +34,7 @@ void LoadBalancer::tick() {
     // currenttime acts as the clock cycle
     ++currentTime;
     for (auto* server : servers) server->tick();
-    if (rand() % 10 < 3) { // generates number from 1-10, 30% chance to add new requests to prevent queue from growing too fast
+    if (rand() % 10 < 7) { // generates number from 1-10, 70% chance to add new requests to prevent queue from growing too fast
         //if request is made, random ip address
         std::string ip1 = std::to_string(rand() % 256) + "." +
                           std::to_string(rand() % 256) + "." +
@@ -45,8 +45,9 @@ void LoadBalancer::tick() {
                           std::to_string(rand() % 256) + "." +
                           std::to_string(rand() % 256);
 
-        //requests will be added to the queue with a random clock cycle time(between 1-10)
-        addRequest(Request(ip1, ip2, 1 + rand() % 10));
+        //requests will be added to the queue with a random clock cycle time(between 10-20)
+        addRequest(Request(ip1, ip2, 10 + rand() % 11)
+);
     }
     //once we add the request, we need to see if any servers are available to handle it
     distributeRequests();
