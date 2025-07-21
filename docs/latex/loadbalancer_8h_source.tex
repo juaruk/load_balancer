@@ -6,33 +6,37 @@
 \DoxyCodeLine{00003\ }
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
 \DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <queue>}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <ostream>}\ }
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}webserver.h"{}}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}request.h"{}}}
-\DoxyCodeLine{00009\ }
-\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_load_balancer_a6114560fd6fd431c75adeab2f0b230a9}{LoadBalancer}}\ \{}
-\DoxyCodeLine{00019\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00021\ \ \ \ \ std::vector<WebServer*>\ servers;}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00024\ \ \ \ \ std::queue<Request>\ requestQueue;}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ currentTime;}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_load_balancer_a6114560fd6fd431c75adeab2f0b230a9}{LoadBalancer}}(\textcolor{keywordtype}{int}\ numServers);}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_load_balancer_a69951a7bb77be7fafd4d5ad6919abd80}{\string~LoadBalancer}}();}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_adc5b830b2a7c7da382ea1485c2ed7020}{addRequest}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_request}{Request}}\&\ req);}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_a21fe985c018f2ebeb9e4b1b3cc0289fa}{distributeRequests}}();}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_a86fb71fabe8ce27b1ce204b42466d76b}{tick}}();}
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_a8cc6269cc05d195eae28acbeb486f61d}{simulate}}(\textcolor{keywordtype}{int}\ totalTime,\ std::ostream\&\ out);}
-\DoxyCodeLine{00068\ \};}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LOADBALANCER\_H}}
-\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <ostream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}webserver.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}request.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_load_balancer_a6114560fd6fd431c75adeab2f0b230a9}{LoadBalancer}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ std::vector<WebServer*>\ servers;\ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ std::queue<Request>\ requestQueue;\ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ currentTime;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::pair<uint32\_t,\ uint32\_t>\ blockedRanges[];\ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ blockedRangesCount;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ ipToUint(\textcolor{keyword}{const}\ std::string\&\ ip);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ isBlockedIP(\textcolor{keyword}{const}\ std::string\&\ ip);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_load_balancer_a6114560fd6fd431c75adeab2f0b230a9}{LoadBalancer}}(\textcolor{keywordtype}{int}\ numServers);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{class_load_balancer_a69951a7bb77be7fafd4d5ad6919abd80}{\string~LoadBalancer}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_adc5b830b2a7c7da382ea1485c2ed7020}{addRequest}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_request}{Request}}\&\ req);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_a21fe985c018f2ebeb9e4b1b3cc0289fa}{distributeRequests}}();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_a86fb71fabe8ce27b1ce204b42466d76b}{tick}}();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_load_balancer_a8cc6269cc05d195eae28acbeb486f61d}{simulate}}(\textcolor{keywordtype}{int}\ totalTime,\ std::ostream\&\ out);}
+\DoxyCodeLine{00083\ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LOADBALANCER\_H}}
 
 \end{DoxyCode}

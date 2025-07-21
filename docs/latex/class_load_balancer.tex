@@ -2,7 +2,7 @@
 \hypertarget{class_load_balancer}{}\label{class_load_balancer}\index{LoadBalancer@{LoadBalancer}}
 
 
-Distributes incoming web requests among a pool of web servers.  
+Manages a pool of web servers and distributes incoming requests to them.  
 
 
 
@@ -13,23 +13,23 @@ Distributes incoming web requests among a pool of web servers.
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_load_balancer_a6114560fd6fd431c75adeab2f0b230a9}{Load\+Balancer}} (int num\+Servers)
-\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_load_balancer}{Load\+Balancer} with a specified number of servers. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Constructs the \doxylink{class_load_balancer}{Load\+Balancer} and initializes the specified number of web servers. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_load_balancer_a69951a7bb77be7fafd4d5ad6919abd80}{\texorpdfstring{$\sim$}{\string~}\+Load\+Balancer}} ()
-\begin{DoxyCompactList}\small\item\em Destructor to clean up dynamically allocated \doxylink{class_web_server}{Web\+Server} objects. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Destructor that releases all dynamically allocated web servers. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_load_balancer_adc5b830b2a7c7da382ea1485c2ed7020}{add\+Request}} (const \mbox{\hyperlink{struct_request}{Request}} \&req)
-\begin{DoxyCompactList}\small\item\em Adds a new request to the request queue. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Adds a new request to the queue if the source IP is not blocked. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_load_balancer_a21fe985c018f2ebeb9e4b1b3cc0289fa}{distribute\+Requests}} ()
-\begin{DoxyCompactList}\small\item\em Distributes queued requests to available servers. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Assigns queued requests to idle servers, if available. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_load_balancer_a86fb71fabe8ce27b1ce204b42466d76b}{tick}} ()
-\begin{DoxyCompactList}\small\item\em Advances the simulation by one clock cycle. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Advances the simulation by one clock cycle, processing requests and optionally adding new requests. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_load_balancer_a8cc6269cc05d195eae28acbeb486f61d}{simulate}} (int total\+Time, std\+::ostream \&out)
-\begin{DoxyCompactList}\small\item\em Runs the simulation for a specified total number of clock cycles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Runs the simulation for the specified number of clock cycles, logging the status of the request queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Distributes incoming web requests among a pool of web servers. 
+Manages a pool of web servers and distributes incoming requests to them. 
 
-The \doxylink{class_load_balancer}{Load\+Balancer} maintains a queue of incoming requests and a vector of pointers to \doxylink{class_web_server}{Web\+Server} instances. It simulates time passing by clock cycles, distributes queued requests to available servers, and logs the simulation. 
+This class maintains a queue of pending requests and a vector of web servers. It supports IP-\/based blocking of requests and simulates the processing of requests over discrete clock cycles. 
 
 \label{doc-constructors}
 \Hypertarget{class_load_balancer_doc-constructors}
@@ -42,18 +42,15 @@ Load\+Balancer\+::\+Load\+Balancer (\begin{DoxyParamCaption}\item[{int}]{num\+Se
 
 
 
-Constructs a \doxylink{class_load_balancer}{Load\+Balancer} with a specified number of servers. 
+Constructs the \doxylink{class_load_balancer}{Load\+Balancer} and initializes the specified number of web servers. 
 
-Constructs a \doxylink{class_load_balancer}{Load\+Balancer} and initializes the specified number of servers.
+Constructor initializes the \doxylink{class_load_balancer}{Load\+Balancer} with specified servers.
 
 
 \begin{DoxyParams}{Parameters}
-{\em num\+Servers} & Number of web servers to initialize.\\
+{\em num\+Servers} & Number of web servers to create and manage.\\
 \hline
-\end{DoxyParams}
-Also initializes the random number generator seed based on the current time. 
-\begin{DoxyParams}{Parameters}
-{\em num\+Servers} & Number of \doxylink{class_web_server}{Web\+Server} instances to create. \\
+{\em num\+Servers} & Number of web servers to create. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{class_load_balancer_a69951a7bb77be7fafd4d5ad6919abd80}\index{LoadBalancer@{LoadBalancer}!````~LoadBalancer@{\texorpdfstring{$\sim$}{\string~}LoadBalancer}}
@@ -64,9 +61,9 @@ Load\+Balancer\+::\texorpdfstring{$\sim$}{\string~}\+Load\+Balancer (\begin{Doxy
 
 
 
-Destructor to clean up dynamically allocated \doxylink{class_web_server}{Web\+Server} objects. 
+Destructor that releases all dynamically allocated web servers. 
 
-Destructor cleans up all dynamically allocated \doxylink{class_web_server}{Web\+Server} instances. 
+Destructor cleans up dynamically allocated servers. 
 
 \label{doc-func-members}
 \Hypertarget{class_load_balancer_doc-func-members}
@@ -79,15 +76,15 @@ void Load\+Balancer\+::add\+Request (\begin{DoxyParamCaption}\item[{const \mbox{
 
 
 
-Adds a new request to the request queue. 
+Adds a new request to the queue if the source IP is not blocked. 
 
-Adds a new request to the queue for processing.
+Adds a new request to the queue if its source IP is not blocked.
 
 
 \begin{DoxyParams}{Parameters}
-{\em req} & The request to add.\\
+{\em req} & \doxylink{struct_request}{Request} object containing source/destination IP and processing time.\\
 \hline
-{\em req} & The \doxylink{struct_request}{Request} object to enqueue. \\
+{\em req} & \doxylink{struct_request}{Request} to be added. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{class_load_balancer_a21fe985c018f2ebeb9e4b1b3cc0289fa}\index{LoadBalancer@{LoadBalancer}!distributeRequests@{distributeRequests}}
@@ -98,13 +95,11 @@ void Load\+Balancer\+::distribute\+Requests (\begin{DoxyParamCaption}{}{}\end{Do
 
 
 
-Distributes queued requests to available servers. 
+Assigns queued requests to idle servers, if available. 
 
-Assigns queued requests to idle servers if available.
+Assigns queued requests to any idle servers.
 
-Assigns requests from the queue to servers that are free to process them.
-
-Iterates over all servers, and if a server is idle and there is a request in the queue, assigns the request to that server and removes it from the queue. \Hypertarget{class_load_balancer_a8cc6269cc05d195eae28acbeb486f61d}\index{LoadBalancer@{LoadBalancer}!simulate@{simulate}}
+Checks all servers and assigns requests from the queue to those which are idle, popping the assigned requests from the queue. \Hypertarget{class_load_balancer_a8cc6269cc05d195eae28acbeb486f61d}\index{LoadBalancer@{LoadBalancer}!simulate@{simulate}}
 \index{simulate@{simulate}!LoadBalancer@{LoadBalancer}}
 \doxysubsubsection{\texorpdfstring{simulate()}{simulate()}}
 {\footnotesize\ttfamily \label{class_load_balancer_a8cc6269cc05d195eae28acbeb486f61d} 
@@ -112,22 +107,19 @@ void Load\+Balancer\+::simulate (\begin{DoxyParamCaption}\item[{int}]{total\+Tim
 
 
 
-Runs the simulation for a specified total number of clock cycles. 
+Runs the simulation for the specified number of clock cycles, logging the status of the request queue. 
 
-Runs the load balancer simulation for a given number of clock cycles.
+Runs the simulation for a given number of clock cycles.
 
 
-\begin{DoxyParams}{Parameters}
-{\em total\+Time} & Total number of clock cycles to simulate. \\
-\hline
-{\em out} & Output stream to log simulation information.\\
-\hline
-\end{DoxyParams}
-Calls \doxylink{class_load_balancer_a86fb71fabe8ce27b1ce204b42466d76b}{tick()} repeatedly, and logs the current tick number and queue size to the output stream. 
 \begin{DoxyParams}{Parameters}
 {\em total\+Time} & Number of clock cycles to simulate. \\
 \hline
-{\em out} & Output stream to write simulation logs. \\
+{\em out} & Output stream where simulation logs will be written.\\
+\hline
+{\em total\+Time} & Number of clock cycles to simulate. \\
+\hline
+{\em out} & Output stream to write the simulation log. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{class_load_balancer_a86fb71fabe8ce27b1ce204b42466d76b}\index{LoadBalancer@{LoadBalancer}!tick@{tick}}
@@ -138,11 +130,11 @@ void Load\+Balancer\+::tick (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})
 
 
 
-Advances the simulation by one clock cycle. 
+Advances the simulation by one clock cycle, processing requests and optionally adding new requests. 
 
-Increments current time, ticks each server, generates new requests probabilistically, and distributes them.
+Advances simulation time by one tick.
 
-Increments the internal clock, calls \doxylink{class_load_balancer_a86fb71fabe8ce27b1ce204b42466d76b}{tick()} on all servers, probabilistically adds new requests with a 70\% chance, and distributes any queued requests to available servers. 
+Increments the internal clock, updates all servers, and potentially adds new requests with a 70\% probability. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

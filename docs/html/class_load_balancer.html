@@ -92,7 +92,7 @@ $(function(){initNavTree('class_load_balancer.html','','class_load_balancer-memb
 </div><!--header-->
 <div class="contents">
 
-<p>Distributes incoming web requests among a pool of web servers.  
+<p>Manages a pool of web servers and distributes incoming requests to them.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="loadbalancer_8h_source.html">loadbalancer.h</a>&gt;</code></p>
@@ -100,21 +100,21 @@ $(function(){initNavTree('class_load_balancer.html','','class_load_balancer-memb
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6114560fd6fd431c75adeab2f0b230a9" id="r_a6114560fd6fd431c75adeab2f0b230a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6114560fd6fd431c75adeab2f0b230a9">LoadBalancer</a> (int numServers)</td></tr>
-<tr class="memdesc:a6114560fd6fd431c75adeab2f0b230a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="class_load_balancer.html" title="Distributes incoming web requests among a pool of web servers.">LoadBalancer</a> with a specified number of servers.  <br /></td></tr>
+<tr class="memdesc:a6114560fd6fd431c75adeab2f0b230a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the <a class="el" href="class_load_balancer.html" title="Manages a pool of web servers and distributes incoming requests to them.">LoadBalancer</a> and initializes the specified number of web servers.  <br /></td></tr>
 <tr class="memitem:a69951a7bb77be7fafd4d5ad6919abd80" id="r_a69951a7bb77be7fafd4d5ad6919abd80"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69951a7bb77be7fafd4d5ad6919abd80">~LoadBalancer</a> ()</td></tr>
-<tr class="memdesc:a69951a7bb77be7fafd4d5ad6919abd80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor to clean up dynamically allocated <a class="el" href="class_web_server.html" title="Represents a server that processes requests over discrete clock cycles.">WebServer</a> objects.  <br /></td></tr>
+<tr class="memdesc:a69951a7bb77be7fafd4d5ad6919abd80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor that releases all dynamically allocated web servers.  <br /></td></tr>
 <tr class="memitem:adc5b830b2a7c7da382ea1485c2ed7020" id="r_adc5b830b2a7c7da382ea1485c2ed7020"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc5b830b2a7c7da382ea1485c2ed7020">addRequest</a> (const <a class="el" href="struct_request.html">Request</a> &amp;req)</td></tr>
-<tr class="memdesc:adc5b830b2a7c7da382ea1485c2ed7020"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new request to the request queue.  <br /></td></tr>
+<tr class="memdesc:adc5b830b2a7c7da382ea1485c2ed7020"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new request to the queue if the source IP is not blocked.  <br /></td></tr>
 <tr class="memitem:a21fe985c018f2ebeb9e4b1b3cc0289fa" id="r_a21fe985c018f2ebeb9e4b1b3cc0289fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21fe985c018f2ebeb9e4b1b3cc0289fa">distributeRequests</a> ()</td></tr>
-<tr class="memdesc:a21fe985c018f2ebeb9e4b1b3cc0289fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distributes queued requests to available servers.  <br /></td></tr>
+<tr class="memdesc:a21fe985c018f2ebeb9e4b1b3cc0289fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns queued requests to idle servers, if available.  <br /></td></tr>
 <tr class="memitem:a86fb71fabe8ce27b1ce204b42466d76b" id="r_a86fb71fabe8ce27b1ce204b42466d76b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86fb71fabe8ce27b1ce204b42466d76b">tick</a> ()</td></tr>
-<tr class="memdesc:a86fb71fabe8ce27b1ce204b42466d76b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances the simulation by one clock cycle.  <br /></td></tr>
+<tr class="memdesc:a86fb71fabe8ce27b1ce204b42466d76b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances the simulation by one clock cycle, processing requests and optionally adding new requests.  <br /></td></tr>
 <tr class="memitem:a8cc6269cc05d195eae28acbeb486f61d" id="r_a8cc6269cc05d195eae28acbeb486f61d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cc6269cc05d195eae28acbeb486f61d">simulate</a> (int totalTime, std::ostream &amp;out)</td></tr>
-<tr class="memdesc:a8cc6269cc05d195eae28acbeb486f61d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the simulation for a specified total number of clock cycles.  <br /></td></tr>
+<tr class="memdesc:a8cc6269cc05d195eae28acbeb486f61d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the simulation for the specified number of clock cycles, logging the status of the request queue.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Distributes incoming web requests among a pool of web servers. </p>
-<p>The <a class="el" href="class_load_balancer.html" title="Distributes incoming web requests among a pool of web servers.">LoadBalancer</a> maintains a queue of incoming requests and a vector of pointers to <a class="el" href="class_web_server.html" title="Represents a server that processes requests over discrete clock cycles.">WebServer</a> instances. It simulates time passing by clock cycles, distributes queued requests to available servers, and logs the simulation. </p>
+<div class="textblock"><p>Manages a pool of web servers and distributes incoming requests to them. </p>
+<p>This class maintains a queue of pending requests and a vector of web servers. It supports IP-based blocking of requests and simulates the processing of requests over discrete clock cycles. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6114560fd6fd431c75adeab2f0b230a9" name="a6114560fd6fd431c75adeab2f0b230a9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6114560fd6fd431c75adeab2f0b230a9">&#9670;&#160;</a></span>LoadBalancer()</h2>
@@ -131,17 +131,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a <a class="el" href="class_load_balancer.html" title="Distributes incoming web requests among a pool of web servers.">LoadBalancer</a> with a specified number of servers. </p>
-<p>Constructs a <a class="el" href="class_load_balancer.html" title="Distributes incoming web requests among a pool of web servers.">LoadBalancer</a> and initializes the specified number of servers.</p>
+<p>Constructs the <a class="el" href="class_load_balancer.html" title="Manages a pool of web servers and distributes incoming requests to them.">LoadBalancer</a> and initializes the specified number of web servers. </p>
+<p>Constructor initializes the <a class="el" href="class_load_balancer.html" title="Manages a pool of web servers and distributes incoming requests to them.">LoadBalancer</a> with specified servers.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">numServers</td><td>Number of web servers to initialize.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Also initializes the random number generator seed based on the current time. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">numServers</td><td>Number of <a class="el" href="class_web_server.html" title="Represents a server that processes requests over discrete clock cycles.">WebServer</a> instances to create. </td></tr>
+    <tr><td class="paramname">numServers</td><td>Number of web servers to create and manage.</td></tr>
+    <tr><td class="paramname">numServers</td><td>Number of web servers to create. </td></tr>
   </table>
   </dd>
 </dl>
@@ -163,8 +158,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Destructor to clean up dynamically allocated <a class="el" href="class_web_server.html" title="Represents a server that processes requests over discrete clock cycles.">WebServer</a> objects. </p>
-<p>Destructor cleans up all dynamically allocated <a class="el" href="class_web_server.html" title="Represents a server that processes requests over discrete clock cycles.">WebServer</a> instances. </p>
+<p>Destructor that releases all dynamically allocated web servers. </p>
+<p>Destructor cleans up dynamically allocated servers. </p>
 
 </div>
 </div>
@@ -184,12 +179,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds a new request to the request queue. </p>
-<p>Adds a new request to the queue for processing.</p>
+<p>Adds a new request to the queue if the source IP is not blocked. </p>
+<p>Adds a new request to the queue if its source IP is not blocked.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">req</td><td>The request to add.</td></tr>
-    <tr><td class="paramname">req</td><td>The <a class="el" href="struct_request.html" title="Represents a network request with source and destination IPs and execution time.">Request</a> object to enqueue. </td></tr>
+    <tr><td class="paramname">req</td><td><a class="el" href="struct_request.html" title="Represents a network request with source and destination IPs and execution time.">Request</a> object containing source/destination IP and processing time.</td></tr>
+    <tr><td class="paramname">req</td><td><a class="el" href="struct_request.html" title="Represents a network request with source and destination IPs and execution time.">Request</a> to be added. </td></tr>
   </table>
   </dd>
 </dl>
@@ -211,10 +206,9 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Distributes queued requests to available servers. </p>
-<p>Assigns queued requests to idle servers if available.</p>
-<p>Assigns requests from the queue to servers that are free to process them.</p>
-<p>Iterates over all servers, and if a server is idle and there is a request in the queue, assigns the request to that server and removes it from the queue. </p>
+<p>Assigns queued requests to idle servers, if available. </p>
+<p>Assigns queued requests to any idle servers.</p>
+<p>Checks all servers and assigns requests from the queue to those which are idle, popping the assigned requests from the queue. </p>
 
 </div>
 </div>
@@ -237,19 +231,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Runs the simulation for a specified total number of clock cycles. </p>
-<p>Runs the load balancer simulation for a given number of clock cycles.</p>
+<p>Runs the simulation for the specified number of clock cycles, logging the status of the request queue. </p>
+<p>Runs the simulation for a given number of clock cycles.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">totalTime</td><td>Total number of clock cycles to simulate. </td></tr>
-    <tr><td class="paramname">out</td><td>Output stream to log simulation information.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Calls <a class="el" href="#a86fb71fabe8ce27b1ce204b42466d76b" title="Advances the simulation by one clock cycle.">tick()</a> repeatedly, and logs the current tick number and queue size to the output stream. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
     <tr><td class="paramname">totalTime</td><td>Number of clock cycles to simulate. </td></tr>
-    <tr><td class="paramname">out</td><td>Output stream to write simulation logs. </td></tr>
+    <tr><td class="paramname">out</td><td>Output stream where simulation logs will be written.</td></tr>
+    <tr><td class="paramname">totalTime</td><td>Number of clock cycles to simulate. </td></tr>
+    <tr><td class="paramname">out</td><td>Output stream to write the simulation log. </td></tr>
   </table>
   </dd>
 </dl>
@@ -271,9 +260,9 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Advances the simulation by one clock cycle. </p>
-<p>Increments current time, ticks each server, generates new requests probabilistically, and distributes them.</p>
-<p>Increments the internal clock, calls <a class="el" href="#a86fb71fabe8ce27b1ce204b42466d76b" title="Advances the simulation by one clock cycle.">tick()</a> on all servers, probabilistically adds new requests with a 70% chance, and distributes any queued requests to available servers. </p>
+<p>Advances the simulation by one clock cycle, processing requests and optionally adding new requests. </p>
+<p>Advances simulation time by one tick.</p>
+<p>Increments the internal clock, updates all servers, and potentially adds new requests with a 70% probability. </p>
 
 </div>
 </div>
