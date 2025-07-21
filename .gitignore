@@ -1,0 +1,31 @@
+# Ignore object files
+*.o
+*.obj
+
+# Ignore compiled binaries/executables
+*.exe
+*.out
+*.app
+*.so
+*.dll
+
+# Ignore temporary files
+*.log
+*.tmp
+
+# Ignore Doxygen output folder (default is 'html' and 'latex')
+/html/
+/latex/
+
+/doxygen.log
+
+# Ignore build directories (common names)
+/build/
+/bin/
+/Debug/
+/Release/
+
+# Ignore IDE/editor specific files (optional)
+.vscode/
+.idea/
+*.swp

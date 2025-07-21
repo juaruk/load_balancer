@@ -1,0 +1,41 @@
+\doxysection{main.\+cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{main.cpp@{main.cpp}}
+
+
+Entry point for simulating a load balancer with multiple web servers.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include "{}loadbalancer.\+h"{}}\newline
+{\ttfamily \#include "{}request.\+h"{}}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Main function for running the load balancer simulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Entry point for simulating a load balancer with multiple web servers. 
+
+This program prompts the user to enter the number of servers and the total simulation time (in clock cycles). It initializes a load balancer, preloads it with requests, and logs the simulation output to a file. 
+
+\label{doc-func-members}
+\Hypertarget{main_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Main function for running the load balancer simulation. 
+
+Prompts user input for number of servers and simulation time. Pre-\/loads the request queue and writes simulation logs to "{}simulation\+\_\+log.\+txt"{}.
+
+\begin{DoxyReturn}{Returns}
+int Returns 0 on successful completion. 
+\end{DoxyReturn}

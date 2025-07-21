@@ -1,0 +1,92 @@
+\doxysection{Request Struct Reference}
+\hypertarget{struct_request}{}\label{struct_request}\index{Request@{Request}}
+
+
+Represents a network request with source and destination IPs and execution time.  
+
+
+
+
+{\ttfamily \#include $<$request.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_request_ae91f841386e19127e5913c2be1f2bf20}{Request}} (std\+::string in, std\+::string out, int t)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{struct_request}{Request} with given input IP, output IP, and processing time. \end{DoxyCompactList}\item 
+\Hypertarget{struct_request_afaf8d8928de7ffff8a3767589489bd33}\label{struct_request_afaf8d8928de7ffff8a3767589489bd33} 
+{\bfseries Request} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Initializes IPs to "{}0.\+0.\+0.\+0"{} and time to 0. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{struct_request_a9331de2ccac6bca9a37616d103db6568}{ip\+\_\+in}}
+\item 
+std\+::string \mbox{\hyperlink{struct_request_a789e85de4e06e293c519fa6ed14539f3}{ip\+\_\+out}}
+\item 
+int \mbox{\hyperlink{struct_request_a3cfb576ed0b5e08612f3de8bc7cd72e2}{time}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a network request with source and destination IPs and execution time. 
+
+Represents a network request with source IP, destination IP, and execution time. 
+
+\label{doc-constructors}
+\Hypertarget{struct_request_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_request_ae91f841386e19127e5913c2be1f2bf20}\index{Request@{Request}!Request@{Request}}
+\index{Request@{Request}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{Request()}{Request()}}
+{\footnotesize\ttfamily \label{struct_request_ae91f841386e19127e5913c2be1f2bf20} 
+Request\+::\+Request (\begin{DoxyParamCaption}\item[{std\+::string}]{in}{, }\item[{std\+::string}]{out}{, }\item[{int}]{t}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{struct_request}{Request} with given input IP, output IP, and processing time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Source IP address \\
+\hline
+{\em out} & Destination IP address \\
+\hline
+{\em t} & Execution time in clock cycles\\
+\hline
+{\em in} & Source IP address (string). \\
+\hline
+{\em out} & Destination IP address (string). \\
+\hline
+{\em t} & Execution time or clock cycles needed to process the request. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{struct_request_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_request_a9331de2ccac6bca9a37616d103db6568}\index{Request@{Request}!ip\_in@{ip\_in}}
+\index{ip\_in@{ip\_in}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{ip\_in}{ip\_in}}
+{\footnotesize\ttfamily \label{struct_request_a9331de2ccac6bca9a37616d103db6568} 
+std\+::string Request\+::ip\+\_\+in}
+
+Source IP address \Hypertarget{struct_request_a789e85de4e06e293c519fa6ed14539f3}\index{Request@{Request}!ip\_out@{ip\_out}}
+\index{ip\_out@{ip\_out}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{ip\_out}{ip\_out}}
+{\footnotesize\ttfamily \label{struct_request_a789e85de4e06e293c519fa6ed14539f3} 
+std\+::string Request\+::ip\+\_\+out}
+
+Destination IP address \Hypertarget{struct_request_a3cfb576ed0b5e08612f3de8bc7cd72e2}\index{Request@{Request}!time@{time}}
+\index{time@{time}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily \label{struct_request_a3cfb576ed0b5e08612f3de8bc7cd72e2} 
+int Request\+::time}
+
+Execution time or clock cycles needed to process the request 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+request.\+h\item 
+request.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,97 @@
+\doxysection{Web\+Server Class Reference}
+\hypertarget{class_web_server}{}\label{class_web_server}\index{WebServer@{WebServer}}
+
+
+Represents a server that processes requests over discrete clock cycles.  
+
+
+
+
+{\ttfamily \#include $<$webserver.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_web_server_ad053f4e1808a3c10c7522d0dbbbc031a}{Web\+Server}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_web_server}{Web\+Server} object with no active requests. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_web_server_a4b56881caf0fac2ff1c1761cd8f22cc3}{assign\+Request}} (const \mbox{\hyperlink{struct_request}{Request}} \&req)
+\begin{DoxyCompactList}\small\item\em Assigns a request to this server and starts processing it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_web_server_aa70cfd8749f4aee55c60e09a5f9211f7}{tick}} ()
+\begin{DoxyCompactList}\small\item\em Simulates a clock tick, decreasing the remaining processing time. Once the time remaining reaches zero, the server becomes idle. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_web_server_a3dc0403ae54b9072865b36a57d7fd6a7}{is\+Idle}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the server is currently idle (not busy processing). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a server that processes requests over discrete clock cycles. 
+
+\label{doc-constructors}
+\Hypertarget{class_web_server_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_web_server_ad053f4e1808a3c10c7522d0dbbbc031a}\index{WebServer@{WebServer}!WebServer@{WebServer}}
+\index{WebServer@{WebServer}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{WebServer()}{WebServer()}}
+{\footnotesize\ttfamily \label{class_web_server_ad053f4e1808a3c10c7522d0dbbbc031a} 
+Web\+Server\+::\+Web\+Server (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{class_web_server}{Web\+Server} object with no active requests. 
+
+Constructs a \doxylink{class_web_server}{Web\+Server} instance with no active request. 
+
+\label{doc-func-members}
+\Hypertarget{class_web_server_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_web_server_a4b56881caf0fac2ff1c1761cd8f22cc3}\index{WebServer@{WebServer}!assignRequest@{assignRequest}}
+\index{assignRequest@{assignRequest}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{assignRequest()}{assignRequest()}}
+{\footnotesize\ttfamily \label{class_web_server_a4b56881caf0fac2ff1c1761cd8f22cc3} 
+void Web\+Server\+::assign\+Request (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_request}{Request}} \&}]{req}{}\end{DoxyParamCaption})}
+
+
+
+Assigns a request to this server and starts processing it. 
+
+Assigns a request to this server and starts processing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The request to be processed.\\
+\hline
+{\em req} & The request to be processed by the server. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_web_server_a3dc0403ae54b9072865b36a57d7fd6a7}\index{WebServer@{WebServer}!isIdle@{isIdle}}
+\index{isIdle@{isIdle}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{isIdle()}{isIdle()}}
+{\footnotesize\ttfamily \label{class_web_server_a3dc0403ae54b9072865b36a57d7fd6a7} 
+bool Web\+Server\+::is\+Idle (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Checks if the server is currently idle (not busy processing). 
+
+Checks if the server is currently idle (not processing any request).
+
+\begin{DoxyReturn}{Returns}
+True if the server is idle, false otherwise.
+
+true if the server is idle, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_web_server_aa70cfd8749f4aee55c60e09a5f9211f7}\index{WebServer@{WebServer}!tick@{tick}}
+\index{tick@{tick}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{tick()}{tick()}}
+{\footnotesize\ttfamily \label{class_web_server_aa70cfd8749f4aee55c60e09a5f9211f7} 
+void Web\+Server\+::tick (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Simulates a clock tick, decreasing the remaining processing time. Once the time remaining reaches zero, the server becomes idle. 
+
+Simulates a clock tick; decreases remaining time for current request. If the request is finished, the server becomes idle. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+webserver.\+h\item 
+webserver.\+cpp\end{DoxyCompactItemize}
