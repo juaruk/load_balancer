@@ -3,7 +3,12 @@
 #include <cstdlib>
 #include <ctime>
 
-//Load balancer contains a  list that contains multiple server, and a queue of requests
+/**
+ * @brief Constructs a LoadBalancer and initializes the specified number of servers.
+ * 
+ * Also initializes the random number generator seed based on the current time.
+ * @param numServers Number of WebServer instances to create.
+ */
 LoadBalancer::LoadBalancer(int numServers) : currentTime(0) {
     for (int i = 0; i < numServers; ++i) {
         servers.push_back(new WebServer());
@@ -11,17 +16,28 @@ LoadBalancer::LoadBalancer(int numServers) : currentTime(0) {
     srand(time(0));
 }
 
+/**
+ * @brief Destructor cleans up all dynamically allocated WebServer instances.
+ */
 LoadBalancer::~LoadBalancer() {
     for (auto* server : servers) delete server;
 }
 
-// requests from the servers get added in the queue
+/**
+ * @brief Adds a new request to the queue for processing.
+ * @param req The Request object to enqueue.
+ */
 void LoadBalancer::addRequest(const Request& req) {
     requestQueue.push(req);
 }
 
+/**
+ * @brief Assigns queued requests to idle servers if available.
+ * 
+ * Iterates over all servers, and if a server is idle and there is a request in the queue,
+ * assigns the request to that server and removes it from the queue.
+ */
 void LoadBalancer::distributeRequests() {
-    //this is assigning requests to the servers if they're not doing anything and there are requests
     for (auto* server : servers) {
         if (server->isIdle() && !requestQueue.empty()) {
             server->assignRequest(requestQueue.front());
@@ -30,12 +46,19 @@ void LoadBalancer::distributeRequests() {
     }
 }
 
+/**
+ * @brief Advances the simulation by one clock cycle.
+ * 
+ * Increments the internal clock, calls tick() on all servers,
+ * probabilistically adds new requests with a 70% chance, 
+ * and distributes any queued requests to available servers.
+ */
 void LoadBalancer::tick() {
-    // currenttime acts as the clock cycle
     ++currentTime;
     for (auto* server : servers) server->tick();
-    if (rand() % 10 < 7) { // generates number from 1-10, 70% chance to add new requests to prevent queue from growing too fast
-        //if request is made, random ip address
+
+    if (rand() % 10 < 7) { // 70% chance to generate a new request
+        // Generate random IP addresses for source and destination
         std::string ip1 = std::to_string(rand() % 256) + "." +
                           std::to_string(rand() % 256) + "." +
                           std::to_string(rand() % 256) + "." +
@@ -45,15 +68,21 @@ void LoadBalancer::tick() {
                           std::to_string(rand() % 256) + "." +
                           std::to_string(rand() % 256);
 
-        //requests will be added to the queue with a random clock cycle time(between 10-20)
-        addRequest(Request(ip1, ip2, 10 + rand() % 11)
-);
+        // Add request with processing time between 10 and 20 clock cycles
+        addRequest(Request(ip1, ip2, 10 + rand() % 11));
     }
-    //once we add the request, we need to see if any servers are available to handle it
+
+    // Assign requests from the queue to any idle servers
     distributeRequests();
 }
 
-//this is how load balancer increments time
+/**
+ * @brief Runs the load balancer simulation for a given number of clock cycles.
+ * 
+ * Calls tick() repeatedly, and logs the current tick number and queue size to the output stream.
+ * @param totalTime Number of clock cycles to simulate.
+ * @param out Output stream to write simulation logs.
+ */
 void LoadBalancer::simulate(int totalTime, std::ostream& out) {
     for (int i = 0; i < totalTime; ++i) {
         tick();
