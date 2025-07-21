@@ -134,8 +134,10 @@ void LoadBalancer::tick() {
  */
 void LoadBalancer::simulate(int totalTime, std::ostream& out) {
     out << "Simulation started: Task time range = 10 to 20 clock cycles\n";
+    out << "Starting queue size: " << requestQueue.size() << "\n";
     for (int i = 0; i < totalTime; ++i) {
         tick();
         out << "Tick: " << i + 1 << ", Requests in queue: " << requestQueue.size() << "\n";
     }
+    out << "Ending queue size: " << requestQueue.size() << "\n";
 }
